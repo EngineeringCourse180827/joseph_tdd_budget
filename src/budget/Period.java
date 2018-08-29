@@ -35,6 +35,7 @@ public class Period {
         }
 
         LocalDate overlappingStart = start.isAfter(budget.getFirstDay()) ? start : budget.getFirstDay();
-        return DAYS.between(overlappingStart, end) + 1;
+        LocalDate overlappingEnd = end.isBefore(budget.getLastDay()) ? end : budget.getLastDay();
+        return DAYS.between(overlappingStart, overlappingEnd) + 1;
     }
 }

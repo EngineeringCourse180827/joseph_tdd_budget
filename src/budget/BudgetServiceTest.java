@@ -58,6 +58,15 @@ public class BudgetServiceTest {
                 of(2018, 8, 1));
     }
 
+    @Test
+    public void period_overlap_budget_last_day() {
+        givenBudgets(new Budget("2018-08", 31));
+
+        totalAmountShouldBe(1,
+                of(2018, 8, 31),
+                of(2018, 9, 1));
+    }
+
     private void givenBudgets(Budget... budgets) {
         when(stubBudgetRepo.getAll()).thenReturn(Arrays.asList(budgets));
     }
