@@ -67,6 +67,15 @@ public class BudgetServiceTest {
                 of(2018, 9, 1));
     }
 
+    @Test
+    public void daily_amount_extend() {
+        givenBudgets(new Budget("2018-08", 310));
+
+        totalAmountShouldBe(20,
+                of(2018, 8, 29),
+                of(2018, 8, 30));
+    }
+
     private void givenBudgets(Budget... budgets) {
         when(stubBudgetRepo.getAll()).thenReturn(Arrays.asList(budgets));
     }

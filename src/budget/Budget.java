@@ -5,9 +5,11 @@ import java.time.YearMonth;
 
 public class Budget {
     private final String yearMonth;
+    private final int amount;
 
     public Budget(String yearMonth, int amount) {
         this.yearMonth = yearMonth;
+        this.amount = amount;
     }
 
     public LocalDate getFirstDay() {
@@ -20,5 +22,9 @@ public class Budget {
 
     public Period getPeriod() {
         return new Period(getFirstDay(), getLastDay());
+    }
+
+    public int getAmount() {
+        return amount;
     }
 }
