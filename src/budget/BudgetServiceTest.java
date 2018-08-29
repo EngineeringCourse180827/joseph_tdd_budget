@@ -76,11 +76,20 @@ public class BudgetServiceTest {
                 of(2018, 8, 30));
     }
 
+    @Test
+    public void total_amount_is_double() {
+        givenBudgets(new Budget("2018-08", 3));
+
+        totalAmountShouldBe(0.1,
+                of(2018, 8, 29),
+                of(2018, 8, 29));
+    }
+
     private void givenBudgets(Budget... budgets) {
         when(stubBudgetRepo.getAll()).thenReturn(Arrays.asList(budgets));
     }
 
     private void totalAmountShouldBe(double expected, LocalDate start, LocalDate end) {
-        assertEquals(expected, budgetService.queryTotal(start, end));
+        assertEquals(expected, budgetService.queryTotal(start, end), 0.01);
     }
 }

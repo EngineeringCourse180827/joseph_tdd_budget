@@ -28,8 +28,8 @@ public class Budget {
         return amount;
     }
 
-    public long getDailyAmount() {
-        return amount / getPeriod().getDayCount();
+    public double getDailyAmount() {
+        return 1d * amount / getPeriod().getDayCount();
     }
 
     public double getOverlappingAmount(Period period) {
