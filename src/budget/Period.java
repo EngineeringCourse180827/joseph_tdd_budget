@@ -34,6 +34,7 @@ public class Period {
             return 0;
         }
 
-        return getDayCount();
+        LocalDate overlappingStart = start.isAfter(budget.getFirstDay()) ? start : budget.getFirstDay();
+        return DAYS.between(overlappingStart, end) + 1;
     }
 }
