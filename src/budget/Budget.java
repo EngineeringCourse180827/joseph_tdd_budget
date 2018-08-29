@@ -17,4 +17,8 @@ public class Budget {
     public LocalDate getLastDay() {
         return YearMonth.parse(yearMonth).atEndOfMonth();
     }
+
+    public Period getPeriod() {
+        return new Period(getFirstDay(), getLastDay());
+    }
 }

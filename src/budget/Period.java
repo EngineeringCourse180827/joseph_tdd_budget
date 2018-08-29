@@ -25,17 +25,17 @@ public class Period {
         return start;
     }
 
-    public double getOverlappingDayCount(Budget budget) {
-        if (start.isAfter(budget.getLastDay())) {
+    public double getOverlappingDayCount(Period another) {
+        if (start.isAfter(another.getEnd())) {
             return 0;
         }
 
-        if (end.isBefore(budget.getFirstDay())) {
+        if (end.isBefore(another.getStart())) {
             return 0;
         }
 
-        LocalDate overlappingStart = start.isAfter(budget.getFirstDay()) ? start : budget.getFirstDay();
-        LocalDate overlappingEnd = end.isBefore(budget.getLastDay()) ? end : budget.getLastDay();
+        LocalDate overlappingStart = start.isAfter(another.getStart()) ? start : another.getStart();
+        LocalDate overlappingEnd = end.isBefore(another.getEnd()) ? end : another.getEnd();
         return DAYS.between(overlappingStart, overlappingEnd) + 1;
     }
 }
