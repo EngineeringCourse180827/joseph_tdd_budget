@@ -20,4 +20,8 @@ public class Period {
     public LocalDate getEnd() {
         return end;
     }
+
+    public LocalDate getStart() {
+        return start;
+    }
 }
