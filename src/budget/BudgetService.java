@@ -19,7 +19,7 @@ public class BudgetService {
         }
 
         Budget budget = budgets.get(0);
-        return budget.getAmount() / budget.getPeriod().getDayCount() * period.getOverlappingDayCount(budget.getPeriod());
+        return budget.getOverlappingAmount(period);
     }
 
 }
