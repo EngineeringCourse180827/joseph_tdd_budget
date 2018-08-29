@@ -19,15 +19,7 @@ public class BudgetService {
         }
 
         Budget budget = budgets.get(0);
-        if (period.getStart().isAfter(budget.getLastDay())) {
-            return 0;
-        }
-
-        if (period.getEnd().isBefore(budget.getFirstDay())) {
-            return 0;
-        }
-
-        return period.getDayCount();
+        return period.getOverlappingDayCount(budget);
     }
 
 }

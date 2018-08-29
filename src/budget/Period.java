@@ -24,4 +24,16 @@ public class Period {
     public LocalDate getStart() {
         return start;
     }
+
+    public double getOverlappingDayCount(Budget budget) {
+        if (start.isAfter(budget.getLastDay())) {
+            return 0;
+        }
+
+        if (end.isBefore(budget.getFirstDay())) {
+            return 0;
+        }
+
+        return getDayCount();
+    }
 }
