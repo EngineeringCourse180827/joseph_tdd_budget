@@ -4,17 +4,21 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
+import static java.time.LocalDate.of;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BudgetServiceTest {
 
+    BudgetService budgetService = new BudgetService();
+
     @Test
     public void no_budget() {
-        BudgetService budgetService = new BudgetService();
+        totalAmountShouldBe(0,
+                of(2018, 8, 29),
+                of(2018, 8, 29));
+    }
 
-        double actual = budgetService.queryTotal(LocalDate.of(2018, 8, 29),
-                LocalDate.of(2018, 8, 29));
-
-        assertEquals(0, actual);
+    private void totalAmountShouldBe(double expected, LocalDate start, LocalDate end) {
+        assertEquals(expected, budgetService.queryTotal(start, end));
     }
 }
