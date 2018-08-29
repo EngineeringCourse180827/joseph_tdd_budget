@@ -16,4 +16,8 @@ public class Period {
     public long getDayCount() {
         return DAYS.between(start, end) + 1;
     }
+
+    public LocalDate getEnd() {
+        return end;
+    }
 }

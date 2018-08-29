@@ -31,6 +31,15 @@ public class BudgetServiceTest {
                 of(2018, 8, 29));
     }
 
+    @Test
+    public void no_overlap_period_before_budget_first_day() {
+        givenBudgets(new Budget("2018-08", 31));
+
+        totalAmountShouldBe(0,
+                of(2018, 7, 30),
+                of(2018, 7, 30));
+    }
+
     private void givenBudgets(Budget... budgets) {
         when(stubBudgetRepo.getAll()).thenReturn(Arrays.asList(budgets));
     }
