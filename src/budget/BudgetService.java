@@ -2,8 +2,6 @@ package budget;
 
 import java.time.LocalDate;
 
-import static java.time.temporal.ChronoUnit.DAYS;
-
 public class BudgetService {
     private final BudgetRepo repo;
 
@@ -12,10 +10,13 @@ public class BudgetService {
     }
 
     public double queryTotal(LocalDate start, LocalDate end) {
+        Period period = new Period(start, end);
+
         if (!repo.getAll().isEmpty()) {
-            return DAYS.between(start, end) + 1;
+            return period.getDayCount();
         }
 
         return 0;
     }
+
 }

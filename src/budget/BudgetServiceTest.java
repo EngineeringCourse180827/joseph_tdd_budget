@@ -24,11 +24,15 @@ public class BudgetServiceTest {
 
     @Test
     public void period_inside_budget_month() {
-        when(stubBudgetRepo.getAll()).thenReturn(Arrays.asList(new Budget("2018-08", 31)));
+        givenBudgets(new Budget("2018-08", 31));
 
         totalAmountShouldBe(1,
                 of(2018, 8, 29),
                 of(2018, 8, 29));
+    }
+
+    private void givenBudgets(Budget... budgets) {
+        when(stubBudgetRepo.getAll()).thenReturn(Arrays.asList(budgets));
     }
 
     private void totalAmountShouldBe(double expected, LocalDate start, LocalDate end) {
