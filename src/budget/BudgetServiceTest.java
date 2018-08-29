@@ -85,6 +85,17 @@ public class BudgetServiceTest {
                 of(2018, 8, 29));
     }
 
+    @Test
+    public void multiply_budgets() {
+        givenBudgets(
+                new Budget("2018-08", 31),
+                new Budget("2018-09", 300));
+
+        totalAmountShouldBe(21,
+                of(2018, 8, 31),
+                of(2018, 9, 2));
+    }
+
     private void givenBudgets(Budget... budgets) {
         when(stubBudgetRepo.getAll()).thenReturn(Arrays.asList(budgets));
     }
